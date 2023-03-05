@@ -1,1 +1,1 @@
-export const BILLING_THRESHOLD_IN_USD = 5;
+export const BILLING_THRESHOLD_IN_USD = 4;
