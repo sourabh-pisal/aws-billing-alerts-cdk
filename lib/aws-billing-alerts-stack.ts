@@ -1,4 +1,4 @@
-import {CfnParameter, Duration, Stack, StackProps} from 'aws-cdk-lib';
+import {Duration, Stack, StackProps} from 'aws-cdk-lib';
 import {
   Alarm,
   ComparisonOperator,
@@ -15,11 +15,9 @@ export class AwsBillingAlertsStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    const emailAddressParameter = new CfnParameter(this, 'email');
-
     const biilingAlertstopic = new Topic(this, 'AwsBillingAlertsCdkTopic');
     biilingAlertstopic.addSubscription(
-      new EmailSubscription(emailAddressParameter.valueAsString)
+      new EmailSubscription('pisal.sourabh@gmail.com')
     );
 
     const billingMetric = new Metric({
