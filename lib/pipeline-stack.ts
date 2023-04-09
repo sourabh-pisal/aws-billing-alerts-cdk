@@ -1,10 +1,11 @@
-import {Stack, StackProps, Tags} from 'aws-cdk-lib';
+import {Stack, StackProps} from 'aws-cdk-lib';
 import {
   CodePipeline,
   CodePipelineSource,
   ShellStep,
 } from 'aws-cdk-lib/pipelines';
 import {Construct} from 'constructs';
+import {PipelineStage} from './pipeline-stage';
 
 export class PipelineStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -21,6 +22,12 @@ export class PipelineStack extends Stack {
       }),
     });
 
-    Tags.of(pipeline).add('project', 'billing');
+    pipeline.addStage(
+      new PipelineStage(this, 'prod', {
+        env: {
+          region: 'us-east-1',
+        },
+      })
+    );
   }
 }

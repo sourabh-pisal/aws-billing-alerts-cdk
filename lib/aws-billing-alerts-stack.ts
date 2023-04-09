@@ -17,7 +17,7 @@ export class AwsBillingAlertsStack extends Stack {
 
     const emailAddressParameter = new CfnParameter(this, 'email');
 
-    const biilingAlertstopic = new Topic(this, 'Topic');
+    const biilingAlertstopic = new Topic(this, 'AwsBillingAlertsCdkTopic');
     biilingAlertstopic.addSubscription(
       new EmailSubscription(emailAddressParameter.valueAsString)
     );
@@ -28,7 +28,7 @@ export class AwsBillingAlertsStack extends Stack {
       statistic: 'Maximum',
       dimensionsMap: {Currency: 'USD'},
     });
-    const billingAlarm = new Alarm(this, 'Alarm', {
+    const billingAlarm = new Alarm(this, 'AwsBillingAlertsCdkAlarm', {
       metric: billingMetric.with({period: Duration.hours(6)}),
       alarmDescription: `Upper Billing Limit of ${BILLING_THRESHOLD_IN_USD}`,
       threshold: BILLING_THRESHOLD_IN_USD,
