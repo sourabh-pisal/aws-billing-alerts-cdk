@@ -5,7 +5,7 @@
     "aws-billing-alerts-cdk": "bin/aws-billing-alerts-cdk.js"
   },
   "scripts": {
-    "build": "tsc && jest",
+    "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
@@ -25,6 +25,7 @@
   "dependencies": {
     "aws-cdk-lib": "^2.64.0",
     "constructs": "^10.0.0",
+    "gts": "^3.1.1",
     "npm": "^9.6.2"
   }
 }
