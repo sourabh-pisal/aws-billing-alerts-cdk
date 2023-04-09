@@ -43,16 +43,17 @@ export class PipelineStack extends Stack {
       new EmailSubscription('{{resolve:ssm:email}}')
     );
 
-    new NotificationRule(this, 'AwsBillingAlertsPipelineNotification', {
-      detailType: DetailType.BASIC,
-      events: [
-        'codepipeline-pipeline-pipeline-execution-failed',
-        'codepipeline-pipeline-pipeline-execution-canceled',
-        'codepipeline-pipeline-pipeline-execution-succeeded',
-        'codepipeline-pipeline-pipeline-execution-superseded',
-      ],
-      source: codePipeline.pipeline,
-      targets: [pipelineTopic],
-    });
+    // new NotificationRule(this, 'AwsBillingAlertsPipelineNotification', {
+    //   detailType: DetailType.BASIC,
+    //   notificationRuleName: 'AwsBillingAlertsPipelineNotification',
+    //   events: [
+    //     'codepipeline-pipeline-pipeline-execution-failed',
+    //     'codepipeline-pipeline-pipeline-execution-canceled',
+    //     'codepipeline-pipeline-pipeline-execution-succeeded',
+    //     'codepipeline-pipeline-pipeline-execution-superseded',
+    //   ],
+    //   source: codePipeline.pipeline,
+    //   targets: [pipelineTopic],
+    // });
   }
 }
