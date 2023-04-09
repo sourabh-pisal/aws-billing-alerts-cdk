@@ -9,9 +9,10 @@ import {SnsAction} from 'aws-cdk-lib/aws-cloudwatch-actions';
 import {Topic} from 'aws-cdk-lib/aws-sns';
 import {EmailSubscription} from 'aws-cdk-lib/aws-sns-subscriptions';
 import {Construct} from 'constructs';
-import {BILLING_THRESHOLD_IN_USD} from './config';
 
 export class AwsBillingAlertsStack extends Stack {
+  private static readonly billingThresholdInUsd = 10;
+
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
@@ -28,8 +29,8 @@ export class AwsBillingAlertsStack extends Stack {
     });
     const billingAlarm = new Alarm(this, 'AwsBillingAlertsCdkAlarm', {
       metric: billingMetric.with({period: Duration.hours(6)}),
-      alarmDescription: `Upper Billing Limit of ${BILLING_THRESHOLD_IN_USD}`,
-      threshold: BILLING_THRESHOLD_IN_USD,
+      alarmDescription: `Upper Billing Limit of ${AwsBillingAlertsStack.billingThresholdInUsd}`,
+      threshold: AwsBillingAlertsStack.billingThresholdInUsd,
       comparisonOperator: ComparisonOperator.GREATER_THAN_THRESHOLD,
       evaluationPeriods: 1,
       treatMissingData: TreatMissingData.MISSING,
