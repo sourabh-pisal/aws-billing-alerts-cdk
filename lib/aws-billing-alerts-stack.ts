@@ -17,7 +17,7 @@ export class AwsBillingAlertsStack extends Stack {
 
     const biilingAlertstopic = new Topic(this, 'AwsBillingAlertsCdkTopic');
     biilingAlertstopic.addSubscription(
-      new EmailSubscription('pisal.sourabh@gmail.com')
+      new EmailSubscription('{{resolve:ssm:email}}')
     );
 
     const billingMetric = new Metric({
