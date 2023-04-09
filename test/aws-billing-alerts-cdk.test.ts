@@ -1,11 +1,11 @@
 import * as cdk from 'aws-cdk-lib';
 import {Template} from 'aws-cdk-lib/assertions';
-import * as AwsBillingAlertsCdk from '../lib/aws-billing-alerts-cdk-stack';
+import * as AwsBillingAlertsCdk from '../lib/aws-billing-alerts-stack';
 
 test('SQS Queue and SNS Topic Created', () => {
   const app = new cdk.App();
   // WHEN
-  const stack = new AwsBillingAlertsCdk.AwsBillingAlertsCdkStack(
+  const stack = new AwsBillingAlertsCdk.AwsBillingAlertsStack(
     app,
     'MyTestStack'
   );

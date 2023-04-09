@@ -11,13 +11,13 @@ import {EmailSubscription} from 'aws-cdk-lib/aws-sns-subscriptions';
 import {Construct} from 'constructs';
 import {BILLING_THRESHOLD_IN_USD} from './config';
 
-export class AwsBillingAlertsCdkStack extends Stack {
+export class AwsBillingAlertsStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
     const emailAddressParameter = new CfnParameter(this, 'email');
 
-    const biilingAlertstopic = new Topic(this, 'AwsBillingAlertsCdkTopic');
+    const biilingAlertstopic = new Topic(this, 'Topic');
     biilingAlertstopic.addSubscription(
       new EmailSubscription(emailAddressParameter.valueAsString)
     );
@@ -28,7 +28,7 @@ export class AwsBillingAlertsCdkStack extends Stack {
       statistic: 'Maximum',
       dimensionsMap: {Currency: 'USD'},
     });
-    const billingAlarm = new Alarm(this, 'AwsBillingAlertsCdkAlarm', {
+    const billingAlarm = new Alarm(this, 'Alarm', {
       metric: billingMetric.with({period: Duration.hours(6)}),
       alarmDescription: `Upper Billing Limit of ${BILLING_THRESHOLD_IN_USD}`,
       threshold: BILLING_THRESHOLD_IN_USD,

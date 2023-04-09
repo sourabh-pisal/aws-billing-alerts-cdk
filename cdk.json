@@ -1,5 +1,5 @@
 {
-  "app": "node build/bin/aws-billing-alerts-cdk.js",
+  "app": "node build/bin/aws-billing-alerts.js",
   "watch": {
     "include": [
       "**"
