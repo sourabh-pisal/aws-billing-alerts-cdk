@@ -11,7 +11,7 @@ import {EmailSubscription} from 'aws-cdk-lib/aws-sns-subscriptions';
 import {Construct} from 'constructs';
 
 export class AwsBillingAlertsStack extends Stack {
-  private static readonly billingThresholdInUsd = 10;
+  private static readonly billingThresholdInUsd = 20;
 
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
