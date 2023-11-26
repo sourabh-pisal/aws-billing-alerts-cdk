@@ -22,7 +22,7 @@ test('SQS Queue and SNS Topic Created', () => {
   template.hasResourceProperties('AWS::CloudWatch::Alarm', {
     ComparisonOperator: 'GreaterThanThreshold',
     EvaluationPeriods: 1,
-    AlarmDescription: 'Upper Billing Limit of 10',
+    AlarmDescription: 'Upper Billing Limit of 20',
     Dimensions: [
       {
         Name: 'Currency',
@@ -33,7 +33,7 @@ test('SQS Queue and SNS Topic Created', () => {
     Namespace: 'AWS/Billing',
     Period: 21600,
     Statistic: 'Maximum',
-    Threshold: 10,
+    Threshold: 20,
     TreatMissingData: 'missing',
   });
 });
